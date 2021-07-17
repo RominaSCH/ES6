@@ -1,0 +1,7 @@
+## This in Javascript
+
+#### this 1 : console.log(this) -> window 라는 object 가 뜬다.
+#### window는 모든 전역함수, 함수, DOM을 보관하고 관리하는 전역객체이다. (기본 함수들의 수납공간(Object)이다.)
+###### 'use strict'; 하면 console.log(this) -> undefined (안중요)
+
+#### this 2 : Object 내 함수에서 쓰면 this는 그 함수를 가지고 있는 오브젝트(주인님)를 뜻한다. 요게 가장 중요함!
