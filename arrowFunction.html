@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button id="button">Click Here!</button>
+    <script>
+
+        //arrow function 장점 1. 입출력 기계 만들 때 보기가 쉽다
+        var func = a => a + 10; //2. parameter가 하나면 소괄호 생략가능
+                                //3. 함수 코드가 한줄이면 중괄호 생략 가능
+
+
+            //함수는 항상 목적에 맞게 써야함. 
+            //1. 코드들을 기능으로 묶을 때 사용
+            //2. 입출력 기계를 만들 때 사용
+        
+        
+        // console.log(func(5));
+
+        [1,2,3,4].forEach((e) => console.log(e))
+            //e 는 앞의 array의 element
+
+
+            //Arrow Function의 특징은 this를 사용할 때 바깥에 있는 this를 그대로 사용하기 때문에 재정의해줘야한다.
+            //일반 이벤트리스너에서는 this == e.currentTarget 인데
+            //arrow function 이벤트 리스너에서는 this == 바깥의 this 값이다.
+        document.getElementById("button").addEventListener("click", (e) => e.currentTarget ); 
+        //this 쓰기 귀찮으니까 e.currentTarget쓴거임
+
+        var MyObject  = {
+            함수 : () => { console.log(this)}
+        }
+        MyObject.함수(); // window가 출력된다. 밖에 있는 this를 그대로 가져다가 썼기 때문.
+   
+    </script>
+</body>
+</html>
