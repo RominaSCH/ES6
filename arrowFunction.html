@@ -39,14 +39,25 @@
 
         var 사람 = {
             name : "손흥민",
-            sayHi : (e) => { console.log("안녕 나는 " + e)}
+            // sayHi : (e) => { console.log("안녕 나는 " + e)}
+            sayHi : function(){
+                console.log("안녕 나는 " + this.name)
+            }
         }
-        사람.sayHi(사람.name);
+        사람.sayHi(); //나는 사람.sayHi(사람.name) 이라고 괄호안에 변수를 넣음.
 
         var dataObj = {
             data : [1,2,3,4,5],
-            
         }
+        dataObj.addAll = function(){ //dataObj.data 로 적어서 안됐음
+
+            let result = 0;
+            this.data.forEach((ele) => { //dataObj.data.forEach 로 적었었음
+                result += ele;
+            });
+            console.log(result);
+        }
+        dataObj.addAll(); //dataObj.data 로 적어서 안됐음
    
     </script>
 </body>
