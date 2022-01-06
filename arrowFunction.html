@@ -36,6 +36,17 @@
             함수 : () => { console.log(this)}
         }
         MyObject.함수(); // window가 출력된다. 밖에 있는 this를 그대로 가져다가 썼기 때문.
+
+        var 사람 = {
+            name : "손흥민",
+            sayHi : (e) => { console.log("안녕 나는 " + e)}
+        }
+        사람.sayHi(사람.name);
+
+        var dataObj = {
+            data : [1,2,3,4,5],
+            
+        }
    
     </script>
 </body>
