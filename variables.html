@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+            //var 재선언 O 재할당 O 범위 function
+            //let 재선언 X 재할당 O 범위 {}
+            //const 재선언 X 재할당 X 범위 {}
+            //const 변수에 오브젝트를 담았을 때 오브젝트 내의 데이터는 변경이 가능하다.
+            //엄밀히 말했을 때 재할당한게 아니기 때문.
+            //완전 변경 불가능한 오브젝트를 만들기 위해선 Object.freeze(오브젝트) 하면 된다. 
+
+            const 사람 = { 
+                name : "KIM",
+                age : 29,
+            }
+            // Object.freeze(사람);
+            사람.name = "CHOI";
+            console.log(사람.name);
+
+
+    </script>
+</body>
+</html>
+
