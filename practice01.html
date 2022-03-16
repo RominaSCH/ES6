@@ -10,10 +10,16 @@
     
 
     <script>
-        함수();
+        /* 함수();
         function 함수(){ //function은 선 언급 후 아래로 내려가서 해당 function을 찾지만
             console.log(안녕); //변수는 선 언급이 필요한듯 싶다.
             let 안녕 = "Hello!"; //문제1 의 답은 ReferenceError. 선언 전에 함수 언급이 있었으니까 initialization이 되지 않아서 에러남
+        } */
+
+        함수(); //var로 지정했기에 변수라서 함수();라고 할 수 없다.
+        var 함수 = function(){
+            console.log(안녕);
+            var 안녕 = "Hello!";
         }
     </script>
 </body>
