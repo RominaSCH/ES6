@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spread Operator</title>
+</head>
+<body>
+    
+    <script>
+        var array = ["Hola", "mundo"];
+        console.log(...array) // ...array에서 ...은 대괄호를 제거해주세요!
+
+        var 문자 = "hello";
+        console.log(...문자) //'h''e''l''l''o'로 해체됨
+
+        var a = [1,2,3];
+        var b = [4,5];
+
+        var c = [...a, ...b];
+        console.log(c); // [1,2,3,4,5] 가 됨
+        //Array를 Deep Copy할 때 유용하다.
+
+        var f = [1,2,3];
+        var g = f;
+        f[3] = 4;
+        console.log(f);
+        console.log(g); //f랑 g랑 같은 결과가 나온다. 
+
+        //Array랑 Object는 reference data type이기 때문에 단순 복사할 시 값을 공유하게 되므로 주의할 것.
+
+        var o1 = {a : 1, b : 2};
+        var o2 = {...o1, c : 3 }
+        console.log(o2); //중괄호도 벗김
+        var o3 = {a : 3, ...o1}
+        console.log(o3);//중복될 경우 가장 뒤에 오는 값을 적용한다.
+        //괄호 벗겨주는 spread operator는 중괄호, 대괄호, 소괄호(함수 등) 안에서만 사용 가능하다.
+        //그냥 아무데서나 쓰면 에러남
+
+    </script>
+
+</body>
+</html>
