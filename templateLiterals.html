@@ -10,17 +10,37 @@
     <script>
         // `` backquote 문자열의 장점 1. 엔터키 가능 2. 중간에 변수 집어넣기 가능(${}로 넣는다)
         // `<div></div>` HTML도 넣을 수 있다.
-        var 변수 = "손흥민";
+        /*var 변수 = "손흥민";
         var 문자 = `안녕하세요 저는 ${변수} 입니다`;
  
         console.log(문자);
         function 해체분석기(문자들, 변수들){
-            console.log(문자들)
-            console.log(변수들)
-        }
+            console.log(`${문자들[1]} ${변수} ${문자들[0]}`)
+            //문자들 순서 바꾸기도 쉬워짐
+
+        } //결과는 ['안녕하세요', '입니다']랑 손흥민 undefined 나옴
+        //해체분석기 파라미터1(문자들)은 문자들을 Array화 해줌
+        //파라미터2(변수들)는 ${변수}를 뜻함
+        //파라미터3(변수들2)은 두번째 ${변수}를 뜻함
         
         console.log(해체분석기`안녕하세요 ${변수} 입니다`)
          //소괄호 대신 `` 쓴것임. Tagged literal
+         //단어 순서를 변경하거나, 단어를 제거하거나, ${변수}위치를 옮기거나 쉽게 할 수 있다. */
+
+        var pants = 20;
+        var socks = 100;
+        해체분석기`바지${pants} 양말${socks}`;
+        function 해체분석기(li, v1, v2){
+            if(v1 == 0){
+                console.log(`${li[0]}안팔아요 ${li[1]}${v2}`)
+            }else if(v2 == 0){
+                console.log(`${li[0]}${v1} ${li[1]}안팔아요`)
+            }else{
+                console.log(li[0] + v1 + li[1] + v2)
+            }
+            
+        }
+         
 
     </script>
 </body>
