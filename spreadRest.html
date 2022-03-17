@@ -57,9 +57,18 @@
         정렬('bear');  */
 
         //Question 8
-        function 글자세기(){
-            
+        function 글자세기(words){
+            var resultObj = {};
+            [...words].forEach(function(a){
+                if(resultObj[a] > 0){
+                    resultObj[a]++
+                }else{
+                    resultObj[a] = 1
+                }
+            })
+            console.log(resultObj)
         }
+        글자세기('aabbbc')
 
     </script>
 </body>
