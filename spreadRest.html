@@ -59,7 +59,7 @@
         //Question 8
         function 글자세기(words){
             var resultObj = {};
-            [...words].forEach(function(a){
+            [...words].forEach(function(a){ //forEach는 Array에만 쓸 수 있다.
                 if(resultObj[a] > 0){
                     resultObj[a]++
                 }else{

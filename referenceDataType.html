@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reference Data Type</title>
+</head>
+<body>
+    <script>
+        //문자와 Number는 Primitive Data Type
+        //Array와 Object는 Reference Data Type
+        var 변수 = 1234;
+        var 어레이 = [1,2,3]; //[1,2,3] 이 저쪽(reference)에 있다.
+        var 오브젝트 = { name : "Kim"}
+
+        var name1 = "Kim";
+        var name2 = name1;
+        name1 = "Park";
+        console.log(name1 + name2) // "Kim"
+
+        var 이름1 = { name : "김"};
+        var 이름2 = 이름1;
+        이름1.name = "박";
+        console.log(이름1.name + 이름2.name) //reference data type의 특성. data의 주소를 얻어왔으니 값을 공유한다. 
+
+        var 이름3 = { name : "김"};
+        console.log(이름1 == 이름3); //주소가 다르기 때문에 false가 나온다
+
+        function 변경(obj){
+            obj = { name : "Park"};
+            //적용되지 않는 이유는 parameter라서, 변수 생성&할당과 같은 기능을 한다 즉,
+            //obj = { name : "Park"} 는 var obj = { name : "Park"} 와 같다
+
+            //데이터 변경이 아니라 새로운 화살표의 생성, 다른 변수를 만든 거나 다름 없다.
+        }
+
+        변경(이름1);
+        console.log(이름1)
+
+    </script>
+</body>
+</html>
