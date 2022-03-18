@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Constructor</title>
+</head>
+<body>
+    <script>
+        // Object를 마구 복사하고 싶을 때 사용한다. 비슷한 object를 쉽게 찍어낼 수 잇는 contructor 문법
+        var 학생1 = { 
+            name : "Kim", 
+            age : 15,
+            sayHi : function(){
+                console.log(`안녕하세요 ${this.name} 입니다`);
+            }
+        };
+        // 학생1.sayHi();
+
+        function constructor(your){ //여기서 this는 기계에서 새로 생성되는 object(instance)
+            this.name = your;
+            this.age = 15;
+            this.sayHi = function(){
+                console.log('안녕하세요 ' + this.name + '입니다');
+            }
+        }
+        
+        var 학생2 = new constructor('Kim');
+        학생2.sayHi();
+
+        //Question 1 , 2
+        function shopConstructor(title, price){
+            this.title = title;
+            this.price = price;
+            this.tax = function(){
+                console.log(this.price * 0.1);
+            };
+        }
+        var product1 = new shopConstructor('shirts', 50000);
+        var product2 = new shopConstructor('pants', 60000);
+        console.log(product1);
+        console.log(product2);
+        product1.tax();
+
+    </script>
+</body>
+</html>
