@@ -34,14 +34,25 @@
             this.title = title;
             this.price = price;
             this.tax = function(){
-                console.log(this.price * 0.1);
+                console.log(this.price * 0.1); //constuctor가 가지고 있던 title, prie, tax속성들을 물려받았다.('상속' 했다)
             };
         }
+        shopConstructor.prototype.category = "cloth";
+        //속성 찾을 때 직접 자료형에 있는 지 먼저 찾고, 없으면 부모에게 받은 유전자(prototype)에서 찾는다.
+        //여기서도 못찾으면 부모의 부모의 유전자에서도 찾아내려 한다.
+
         var product1 = new shopConstructor('shirts', 50000);
         var product2 = new shopConstructor('pants', 60000);
         console.log(product1);
         console.log(product2);
         product1.tax();
+
+        //constuctor로 Object생성 시 Prototype(유전자)가 생긴다.
+
+        var arr = [1,2,3]; //var arr = new Array(1,2,3); 과 같다
+        //그래서 arr.sort() map() push() 같은 걸 할 수 있다.
+
+        //var obj = { name : "kim"} 은 var obj = new Object(~~); 과 같다.
 
     </script>
 </body>
