@@ -54,6 +54,14 @@
 
         //var obj = { name : "kim"} 은 var obj = new Object(~~); 과 같다.
 
+        //내 부모 유전자(부모의 prototype)를 검사하고 싶다면 __proto__
+
+        var 부모 = { name : "Kim" };
+        var 자식 = {};
+        자식.__proto__ = 부모;
+
+        console.log(자식.name); //그러면 Kim이 나옴
+        //콘솔창에서 prototype chain을 알 수 있다.
     </script>
 </body>
 </html>

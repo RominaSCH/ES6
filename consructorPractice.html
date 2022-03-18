@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Constructor Practice</title>
+</head>
+<body>
+    <script> 
+        //Question 1 , 3
+        function students(name, age){
+            this.name = name;
+            this.age = age;
+            this.sayHi = function(){
+                console.log(`안녕 나는 ${this.name} 이야`);
+            } 
+        }
+        var student1 = new students("Kim", 20);
+        var student2 = new students("Park", 21);
+        var student3 = new students("Lee", 22);
+        
+
+        /*students.prototype.sayHi = () => {
+            console.log(`안녕 나는 ${this.name} 이야`)  //arrow function =/ function()
+            //arrow function은 바깥에 있는 this를 그대로 사용하고 싶을 때 쓰는 함수.
+            바깥 this값을 썼기 떄문에 제대로 작동하지 않는다.
+        } */
+        student1.sayHi();
+
+        //Question 2
+        function Parent(){
+            this.name = 'Kim';
+        }
+        var a = new Parent();
+
+        a.__proto__.name = 'Park';
+        console.log(a.name); //직접 가지고 있는 값 부터 출력해준다.
+
+        //Question 4
+        Array.prototype.remove3 = function(){
+            for(var i = 0;i < this.length; i++){
+                if(this[i] === 3){
+                    this.splice(i, 1);
+                }
+            }
+        };
+
+        var arr = [1,2,3,4,4,2,8,5,2,3];
+        arr.remove3();
+        console.log(arr)
+
+        //이제 remove(3)이렇게도 만들어보기.
+
+    </script>
+</body>
+</html>
