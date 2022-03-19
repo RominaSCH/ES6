@@ -11,14 +11,32 @@
         //상속기능을 구현하는 ES5 방법
         //Object.create(프로토타입 object); 
 
-        var 부모 = {
+        /*  var 부모 = {
             name : "Kim",
             age : 50,
         }
         var 자식 = Object.create(부모);
         자식.age = 20;
-        var 손자 = Object.create(자식);
-        
+        var 손자 = Object.create(자식); */
+
+        //상속기능을 구현하는 ES6 방법 : class
+        class 부모 {
+            constructor(parameter){
+                this.name = "parameter";
+                this.sayHi = function(){ console.log("hello") } //여기에 쓰면 자식이 직접 함수를 가진다.
+            }
+            // function sayHi(){ console.log("hello") } //여기에 쓰면 자식 오브젝트에 추가 안됨.
+            //부모.prototype에 추가된다
+        }
+        // 부모.prototype.sayHello = function(){ }
+
+        var 자식 = new 부모();
+        // 자식.__proto__ 는 부모.prototype 와 같다
+        Object.getPrototypeOf(자식); // 는 자식.__proto__와 같다. 부모님 prototype 출력해주세요
+
+        //객체지향 문법은 왜 쓰냐면, 
+        // 1. object 여러개를 쉽게 만들어 쓰려고
+
     </script>
 </body>
 </html>
