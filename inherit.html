@@ -34,8 +34,35 @@
         // 자식.__proto__ 는 부모.prototype 와 같다
         Object.getPrototypeOf(자식); // 는 자식.__proto__와 같다. 부모님 prototype 출력해주세요
 
+
+
         //객체지향 문법은 왜 쓰냐면, 
         // 1. object 여러개를 쉽게 만들어 쓰려고
+
+        class 할아버지{
+            constructor(name, height){
+                this.성 = "Kim";
+                this.이름 = name;
+                this.키 = height;
+            }
+            sayHi(){
+                console.log("암유어그랜파")
+            }
+        }
+        class 아버지 extends 할아버지{ //할아버지의 속성들을 물려받아서 아버지를 만들겠다.
+            constructor(name, height){
+                //this.나이 = 70; //이거 에러남. extends 해서 만든 class는 this 그냥 못쓴다.
+                super(name, height);//extends 받은 속성 복붙하겠다 이런 의미임. 이거 쓰고 나서 this 써야함
+                //위 super는 부모 class의 constructor를 의미한다
+                this.나이 = 30;
+            }
+            sayHi(){
+                console.log("암유어파더")
+                super.sayHi(); //여기의 super는 부모 class의 prototype을 의미한다. 
+                // = console.log("암유어그랜파")
+            }
+        }
+        var 아버지1 = new 아버지('민수', 172);
 
     </script>
 </body>
