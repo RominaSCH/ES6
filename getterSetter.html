@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Getter Setter</title>
+</head>
+<body>
+    <script>
+        var 사람 = {
+            name : "Park",
+            age : 30,
+            get nextAge(){
+                return this.age + 1 //함수를 만들어 object 데이터를 다루는 이유?
+                // 1. object 자료가 복잡할 때 이득
+                // 2. object 자료 수정 시 편리하다.
+            },
+            set setAge(나이){ //여기에 set을 붙이면 쓸 때 parameter 소괄호를 안써도 된다.
+                // if(나이가 숫자가 아니면?)~~
+                this.age = parseInt(나이); //데이터 수정 전에 미리 검사할 수 있다.
+            }
+        }
+        //요새는 자료를 꺼낼 때 직접 꺼내지 않고 자료를 꺼내는 법을 만들어서 꺼낸다(잡기술)
+        // 사람.age = 20;
+        // 사람.setAge("29");
+        사람.setAge = "29"; //set 을 붙이면 소괄호를 안 쓸 수 있다.
+        //소괄호 꼴보기 싫을 때 set, get을 쓴다.
+        //set은 데이터를 변경하는 함수에 사용하고
+        //get은 데이터를 꺼내 쓰는 함수에 사용한다.
+        사람.getAge;
+        
+        //get함수들(getter)은 return이 꼭! 있어야 한다. 그리고 파라미터가 없어야 한다.
+        //set함수들(setter)은 파라미터가 꼭 1개 이상 있어야 한다.
+
+        //class에서 사용하는 get/set
+        class people{
+            constructor(){
+                this.name = "Park";
+                this.age = 20;
+            }
+            get nextYear(){
+                return this.age + 1
+            }
+            set setAno(나이){
+                this.age = 나이;
+            }
+        }
+        var 사람1 = new people();
+        console.log(사람1.nextYear) // 사람1.nextYear()하면 에러난다. get set 이후 소괄호 없애기 
+
+        //데이터 출력/수정 함수를 만들어 쓰는 이유? Object 데이터 다루기 쉬우려고
+        
+    </script>
+</body>
+</html>
