@@ -51,6 +51,27 @@
         console.log(john.battlePoint);
         john.heal = 100;
         
+
+        //Question 5
+        var data = {
+            odd : [],
+            even : [],
+            setterF : function(...numbers){
+                numbers.forEach((e) => { //function말고 arrow function을 쓰는 이유는
+                    //this.odd.push 이부분이 에러나서. forEach안에서 this쓰면 this가 window라는 뜻이 되므로
+                    if(e % 2 == 0){
+                        this.even.push(e);
+                    }else{
+                        this.odd.push(e);
+                    }
+                });
+            },
+            get getterF(){
+                return [...this.odd.sort(), ...this.even.sort()];
+            }
+        }
+        data.setterF(8,5,7,2,3,1,4);
+        data.getterF;
     </script>
 </body>
 </html>
