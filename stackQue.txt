@@ -1,0 +1,11 @@
+javascript는 stack(하나)을 갖고 있는 singlethreaded lang이다
+시간이 오래걸리는 코드들(eventlistner, Ajax 요청 코드들)은 대기실(Queue)로 보낸다.
+Queue는 Stack이 비어야 올려보낸다.
+Queue에서 대기가 끝난 애들은 다시 stack으로 보낸다.
+for반복문 음청 많이 시키는거 javascript 시키면 안된다.
+
+Stack 바쁘게 하지 말고
+Queue도 바쁘게 하지 말자.
+
+Javascript는 동기적(한번에 한줄씩)이지만
+비동기적처리(Ajax, setTimeout, 이벤트리스너)도 가능
