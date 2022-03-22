@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Promise</title>
+</head>
+<body>
+    <script>
+        var 프로미스  = new Promise(function(성공, 실패){ //두 개의 파라미터가 꼭 필요하다.
+            /* var 어려운연산  = 1 + 1;
+            성공(어려운연산); //연산 후 성공 혹은 실패를 실행한다. */
+            //성공(10)이면 10을 then함수로 전달한다
+
+            setTimeout(function(){
+                성공();
+            }, 1000)
+
+        }); //Promise는 성공/살패 판정 기계
+
+        //Promise의 3가지 상태
+        //성공하면 resolved
+        //판정 대기중이면 pending
+        //실패하면 rejected 
+        //fetch(), jQuery.ajax() 들은 Promise가 적용된 곳들이다
+
+        //Promise는 동기를 비동기로 바꿔주는 연산이 아니라 코드를 이쁘게 해줄 뿐이다(코딩스타일)
+        //콜백함수를 예쁘게 만들어주는 디자인 패턴이다.
+        //자바스크립트는 평상시엔 동기적으로 실행이 되며 비동기 실행을 지원하는 특수한 함수들 덕분에 가끔 비동기적 실행이 될 뿐입니다
+
+        프로미스.then(function(결과){ //.then~~은 프로미스가 성공했을 경우 실행할 코드
+            //옆으로 길어지지 않아서 좋다   
+            console.log("success")
+            // console.log(결과)
+        }).catch(function(){ //.catch는 실패했을 경우 실행할 코드
+            console.log("failed")
+        })
+
+        //.finally... 등 더 있다.
+    </script>
+</body>
+</html>
