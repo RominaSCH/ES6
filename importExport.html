@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Import Export</title>
+</head>
+<body>
+    <script type="module">
+        // import aaa from '/library.js' //a는 가져올거, from 뒤는 경로
+        /*  import 작명, {a as alpha, b as bubble} from '/library.js'//여기서는 export된 이름 정확히 써야 한다.
+        //default import는 제일 왼쪽에 (작명해서) 써주면 된다.
+        console.log(작명);
+        console.log(alpha);
+        console.log(bubble); */
+
+        import 디폴트, * as 별명 from '/library.js'
+        //*는 모든 것을 불러온다. 디폴트 빼고, 디폴트는 맨 왼쪽으로 따로 부르기.
+        console.log(별명.a);
+        console.log(디폴트);
+
+        //React, Angular 쓸때나 JS파일 나눌 때 import, export를 쓴다.
+
+        // 옛날 방식
+        // var imports = require('/library.js') 
+    </script>
+    <script src="library.js"> 
+    //IE에선 안되지만 프론트엔드 개바렝서는 src쓰는게 가장 낫다. </script>
+    <script>
+
+    </script>
+</body>
+</html>
