@@ -11,22 +11,22 @@
     <script>
         //Question 2 : Ajax 요청이 성공하면 무언가 코드를 실행하고 싶다.
         //Question 3 : Ajax 요청 성공 시 또 다른곳으로 Ajax 요청
-        var 프로미스 = new Promise((성공, 실패) => {
-            $.get('https://codingapple1.github.io/hello.txt').done(function(결과){ //여기서 결과는 Ajax 요청 결과값
-                성공(결과);
-            });
-        });
+        var 프로미스 = ajaxF('https://codingapple1.github.io/hello.txt');
 
         프로미스.then(function(결과){
             console.log(결과);
+            return ajaxF('https://codingapple1.github.io/hello2.txt');
+        }).then(function(결과){ //.then()에서 new Promise()를 배출하면 또 뒤에 이어서 .then()을 쓸 수 있다.
+            console.log(결과);
+        });
+
+        function ajaxF(URL){
             return new Promise((성공, 실패) => {
-                $.get('https://codingapple1.github.io/hello2.txt').done(function(결과){ //여기서 결과는 Ajax 요청 결과값
+                $.get(URL).done(function(결과){ //여기서 결과는 Ajax 요청 결과값
                     성공(결과);
                 });
-            }); //.then()에서 new Promise()를 배출하면 또 뒤에 이어서 .then()을 쓸 수 있다.
-        }).then(function(결과){ //then 은 이어서 계속 쓸 수 있다!
-            console.log(결과);
-        })
+            });
+        }
         
     </script>
 </body>
