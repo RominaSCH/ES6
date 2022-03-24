@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>반복문 연습문제</title>
+  </head>
+  <body>
+    <script>
+      //Question 1 구구단
+      let 데이터 = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+      for (var left of 데이터) {
+        for (var right of 데이터) {
+          console.log(`${left} * ${right} = ${left * right}`);
+        }
+      }
+
+      //Question 2 오타제거
+      var products = [
+        {
+          name1: "chair",
+          price1: 7000,
+        },
+        {
+          name2: "sofa",
+          price: 5000,
+        },
+        {
+          name1: "desk",
+          price3: 9000,
+        },
+      ];
+
+      //답 베낌 추후 공부할것
+      let newValue;
+      let newKey;
+
+      for (let item of products) {
+        for (let key in item) {
+          //마지막글자를 숫자로변환했을 때 NaN이 안나오면 (숫자면)
+          if (isNaN(parseInt(key.slice(-1))) == false) {
+            newValue = item[key];
+            newKey = key.slice(0, -1);
+            item[newKey] = newValue;
+            delete item[key];
+          }
+        }
+      }
+
+      console.log(products);
+    </script>
+  </body>
+</html>
