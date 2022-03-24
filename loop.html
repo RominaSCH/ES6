@@ -12,25 +12,30 @@
 
         //[1,2,3].forEach(); //Array 전용
 
-        class 부모 {
+        // class 부모 {
 
-        }
-        부모.prototype.name = "Park";
-        var 오브젝트 = new 부모();
+        // }
+        // 부모.prototype.name = "Park";
+        // var 오브젝트 = new 부모();
         
-        // var 오브젝트  = {name : "Kim", age : 30}
-        // 오브젝트.name 는 오브젝트["name"] 와 같다
-        // Object.getOwnPropertyDescriptor(오브젝트, 'name');//오브젝트 key마다 숨겨진 속성들을 보여줌
+        // // var 오브젝트  = {name : "Kim", age : 30}
+        // // 오브젝트.name 는 오브젝트["name"] 와 같다
+        // // Object.getOwnPropertyDescriptor(오브젝트, 'name');//오브젝트 key마다 숨겨진 속성들을 보여줌
 
-        for(var key in 오브젝트){
-            if(오브젝트.hasOwnProperty(key)){//내가 직접 가지고 있는 값만 반복시키고 싶을 때의 조건
-                console.log(오브젝트[key]);
-            }
+        // for(var key in 오브젝트){
+        //     if(오브젝트.hasOwnProperty(key)){//내가 직접 가지고 있는 값만 반복시키고 싶을 때의 조건
+        //         console.log(오브젝트[key]);
+        //     }
             
-        } //Object 자료형에만 사용하는 반복문
+        // } //Object 자료형에만 사용하는 반복문
 
+        var 어레이 = [2,3,4,5];
+        for(var 자료 of 어레이){ //var 변수명(작명) of Array
+            console.log(자료)
 
-        //for(var key of Object){} //iterable 전용
+        } //iterable 한 자료형에만 사용 가능
+        // Array, 문자, arguments, NodeList, Map, Set 등
+        어레이[Symbol.iterator]();// .iterable 이게 있으면 iterable한 자료형이다
 
     </script>
 </body>
