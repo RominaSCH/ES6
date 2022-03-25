@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Custom HTML Tag</title>
+</head>
+<body>
+    <custom-input name="이메일"></custom-input>
+    <custom-input name="비번"></custom-input>
+    <script>
+        //(상식)웹개발 잘하고 싶으면 브라우저 기능을 잘 알아야 한다.
+        //JS 문법은 도구일 뿐
+        //Web Components(JS 문법으로 구현할 수 있는 브라우저 기본 기능)
+        //긴 HTML도 함수처럼 재사용 가능하고 확장성이 좋아진다. React, Vue가 더 잘하고 다양한 기능을 제공할 뿐이다.
+        //Web Components 기능을 쉽게 쓸 수 있게 도와주는 Lit, Stencil 등, 관심있으면 찾아봐라
+        class 클래스 extends HTMLElement{
+            connectedCallback(){
+                let name = this.getAttribute('name'); //attribute(name="비번" 같은것들) 변경 감지기능이 제공된다
+                //React, Vue 특징 : props(attribute)가 변경되면 html이 자동으로 재렌더링된다
+                this.innerHTML = `<label>${name}인풋이에요</label><input>`; //이건 직관적인거고
+                
+                let 변수 = document.createElement('label'); //실행속도는 이렇게 하는 게 빠르다!
+                this.appendChild(변수);
+                
+            }
+            static get observedAttributes(){ //attribute 바뀌는 지 감시
+                return ['name'];
+            }
+            attributeChangedCallback(){ //attribute 바뀌면 이걸 실행한다. React, Vue랑 비슷한 재렌ㄷ링 기능구현 방법이다
+                console.log(this.getAttribute('name'))
+            }
+        }
+        customElements.define("custom-input", 클래스);
+
+        //<커스텀태그>의 장점은 HTML 중복 제거, 다른 페이지에서 재활용이 가능하고, 파라미터문법 같은 것도 구현 가능
+        </script>
+</body>
+</html>
