@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Map/Set 자료형</title>
+</head>
+<body>
+    <script>
+        //-----------------------------------Map------------------------------------//
+        var person = new Map(); //맵 자료형 만드는 법
+        // var person = new Array(); //이거처럼 new 똑같이 쓰는거임
+        person.set("name", "kim"); //{ "name" => "kim" } 이렇게 나온다
+        person.set("age", 27);//map 자료형은 자료간의 연관성을 표현하기 위해 쓰인다
+        //Object 자료형의 자료 이름으로는 string만 가능하지만 Map 자료형은 문자, 숫자, Array 등 다 가능하다.
+        person.set([1,2,3], 6)
+
+        //Map 자료형에 직접 자료를 집어넣을 때는
+        var person2 = new Map([ //대괄호 두 개 필요!
+            ["height", 159],
+            ["weight", 60]
+        ])
+
+        //Map 에서 자료 꺼내는 법
+        person.get("age");
+        //Map 에서 자료 제거하는 법
+        person.delete([1,2,3]); //근데 이거 안되넹
+        //데이터의 갯수 세는 법
+        console.log(person.size);
+
+        for(var key of person.keys()){
+            console.log(key);
+            console.log(person.get(key))
+        }
+
+        //------------------------------------Set------------------------------------//
+        var 출석부 = ["john", "tom", "andy", "tom"]; //자료에 중복 있음!
+        //중복자료를 허용하지 않는 Array 비슷한 것이 Set이다
+        var 출석부2 = new Set(["john", "tom", "andy", "tom"]);
+        출석부2.add("sally");
+        출석부2.delete("andy");
+        
+        console.log(출석부);
+        console.log(출석부2); //tom 중복값은 제거되었다!
+        console.log(출석부2.size);
+
+        //Set 자료형 <-> Array 자료형
+        //Array의 중복자료를 제거하고 싶을 때는?
+        var originalArray = [1,2,2,1,8,2];
+        var setArray = new Set(originalArray);
+        originalArray = [...setArray];
+        console.log(originalArray)
+
+    </script>
+</body>
+</html>
