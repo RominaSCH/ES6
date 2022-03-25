@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>symbol</title>
+</head>
+<body>
+    <script>
+        // var 심볼 = Symbol("설명"); //symbol은 비밀스런 데이터를 저장하고 싶을 때 사용한다
+        // 심볼 특징
+        // 1. 설명이 같다고 같은 심볼이 아니다. 만들 때마다 유니크한 Symbol이 생성된다
+        // 2. 전역 변수같은 전역 Symbol 은 Symbol.for 로 만든다
+        var a = Symbol.for("설명1");
+        var b = Symbol.for("설명1") // 이건 b = a 랑 같은 뜻이 된다 ( a === b )
+        // 3. 기본 내장 Symbol 들
+        var 어레이  = [2,3,4];
+        어레이[Symbol.iterator]; // 이게 Array에 있는 기본 내장 심볼
+
+
+        var weight = Symbol("몸무게는 비밀");
+        var height = Symbol("도토리 키재기")
+
+        var MyData = {
+            name : "Kim",
+            height : 163,
+            //weight : 60 //이걸 숨기고 싶다면?
+        }
+        MyData.weight = 52; //가짜몸무게, 반복문에서 출력됨
+        MyData[weight] = 60; //진짜몸무게, 반복문에서는 출력되지 않는다(enumerable X)
+        MyData[height] = 159; 
+
+        for(var key in MyData){
+            console.log(MyData[key]);
+        }
+    </script>
+</body>
+</html>
