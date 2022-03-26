@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Class로 만들어 보는 공룡 게임</title>
+</head>
+<body>
+    <canvas id="canvas"></canvas>
+    <script>
+        // 게임 만들기 위한 3가지
+        // 1.화면에 네모/원 그릴 수 있어야 한다.
+        // 2. 프레임마다 코드 실행이 가능해야 한다. (애니메이션을 위해서)
+        // 3. collision check 할 수 있어야 한다.(캐릭터나 유닛끼리 충돌하는 이벤트를 만들기 위해서)
+
+        var canvas = document.getElementById("canvas");
+        var ctx = canvas.getContext("2d");
+
+        canvas.width = window.innerWidth - 100;
+        canvas.height = window.innerHeight - 100;
+
+        var dino = { //공룡 등장 좌표
+            x : 10,
+            y : 200,
+            width : 50, //공룡 사이즈
+            height : 50,
+            draw(){
+                ctx.fillStyle = "green";
+                ctx.fillRect(this.x, this.y, this.width, this.height);
+            }
+        }
+        
+        dino.draw();
+
+        class Cactus { //장애물도 속성부터 object 자료에 정리해두면 편하다
+            constructor(){
+                this.x = 500;
+                this.y = 200;
+                this.width = 50;
+                this.height = 50;
+            }
+            draw(){
+                ctx.fillStyle = "red";
+                ctx.fillRect(this.x, this.y, this.width, this.height);
+            }
+        }
+        
+        var timer = 0;
+        var cactuses = []; //장애물을 여러개 만들고 싶으면 장애물을 array에 담아라
+
+        function frameF(){ //1초에 60번 실행할 코드
+            requestAnimationFrame(frameF);
+            timer++;
+
+            ctx.clearRect(0,0,canvas.width, canvas.height) //공룡이 움직임
+            // dino.x ++;
+            // dino.draw();
+
+            //장애물을 움직이는 걸로 해보기
+            
+            if(timer % 120 === 0){
+                var cactus = new Cactus(); //장애물을 여러개 만들고 싶으면 장애물을 array에 담아라
+                cactuses.push(cactus);
+            }
+            cactuses.forEach((a) => {
+                a.x += -3;
+                a.draw();
+            })
+            dino.draw();
+
+
+        }
+        frameF();
+
+        var cactus = new Cactus();
+        cactus.draw();
+    </script>
+</body>
+</html>
