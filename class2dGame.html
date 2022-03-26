@@ -7,27 +7,37 @@
     <title>Class로 만들어 보는 공룡 게임</title>
 </head>
 <body>
+    <div class="scoreShow"></div>
     <canvas id="canvas"></canvas>
     <script>
         // 게임 만들기 위한 3가지
         // 1.화면에 네모/원 그릴 수 있어야 한다.
         // 2. 프레임마다 코드 실행이 가능해야 한다. (애니메이션을 위해서)
         // 3. collision check 할 수 있어야 한다.(캐릭터나 유닛끼리 충돌하는 이벤트를 만들기 위해서)
+        // 장애물 좌측 x좌표 - 플레이어 우측 x좌표 < 0 와 플레이어 하단 y좌표 - 장애물 상단 y좌표 < 0 이면 충돌
 
         var canvas = document.getElementById("canvas");
         var ctx = canvas.getContext("2d");
+        var scoreShow = document.querySelector(".scoreShow");
+        var score = 0;
+
+        var playerImg = new Image(); //달리는 이미지 만들고 싶으면 이미지 여러개로 프레임마다 번갈아 끼우면 된다
+        playerImg.src = "/pika.png";
+        var cactusImg = new Image();
+        cactusImg.src = "/ball.jpg";
 
         canvas.width = window.innerWidth - 100;
         canvas.height = window.innerHeight - 100;
 
         var dino = { //공룡 등장 좌표
-            x : 10,
+            x : 50,
             y : 200,
             width : 50, //공룡 사이즈
             height : 50,
             draw(){
                 ctx.fillStyle = "green";
-                ctx.fillRect(this.x, this.y, this.width, this.height);
+                // ctx.fillRect(this.x, this.y, this.width, this.height);
+                ctx.drawImage(playerImg, this.x, this.y, this.width, this.height)
             }
         }
         
@@ -42,16 +52,21 @@
             }
             draw(){
                 ctx.fillStyle = "red";
-                ctx.fillRect(this.x, this.y, this.width, this.height);
+                // ctx.fillRect(this.x, this.y, this.width, this.height);
+                ctx.drawImage(cactusImg, this.x, this.y, this.width, this.height)
             }
         }
         
         var timer = 0;
         var cactuses = []; //장애물을 여러개 만들고 싶으면 장애물을 array에 담아라
+        var 점프중 = false;
+        var 점프타이머 = 0;
+        var animation;
 
         function frameF(){ //1초에 60번 실행할 코드
-            requestAnimationFrame(frameF);
+            animation = requestAnimationFrame(frameF);
             timer++;
+            
 
             ctx.clearRect(0,0,canvas.width, canvas.height) //공룡이 움직임
             // dino.x ++;
@@ -59,22 +74,77 @@
 
             //장애물을 움직이는 걸로 해보기
             
+
             if(timer % 120 === 0){
                 var cactus = new Cactus(); //장애물을 여러개 만들고 싶으면 장애물을 array에 담아라
                 cactuses.push(cactus);
+                score += 10;
+                scoreShow.innerHTML = score;
             }
-            cactuses.forEach((a) => {
+            cactuses.forEach((a, i, o) => {
+                //x 좌표가 0미만이면 제거
+                if(a.x < 0){
+                    o.splice(i, 1);
+                }
+
+                충돌(dino, a);
+
                 a.x += -3;
                 a.draw();
             })
-            dino.draw();
 
+            if(점프중 == true){
+                dino.y -= 3;
+                점프타이머++;
+            }
+            if(점프중 == false){
+                if(dino.y < 200){
+                    dino.y += 3;
+                }
+                
+            }
+            if(점프타이머 > 40){
+                점프중 = false;
+                점프타이머 = 0;
+            }
+            // if(점프타이머 > 100){
+            //     점프중 = false;
+            //     if(dino.y > 0){
+            //         dino.y++;
+            //     }else {
+            //         점프타이머 = 0;
+            //         dino.y = 0;
+            //     }
+            // }
+
+            dino.draw();
+ 
 
         }
         frameF();
 
-        var cactus = new Cactus();
-        cactus.draw();
+        
+        document.addEventListener('keydown', function(e){
+            if(e.code === "Space"){
+                점프중 = true;
+            }
+        })
+
+        function 충돌(dino, cactus){
+            var x축차이 = cactus.x - (dino.x + dino.width);
+            var y축차이 = cactus.y - (dino.y + dino.height);
+            if(x축차이 < 0 && y축차이 < 0){
+                ctx.clearRect(0,0,canvas.width, canvas.height)
+                cancelAnimationFrame(animation);
+            }
+        }
+
+        // Q. 점프 여러번 금지?
+        // Q. 공룡이 달리는 것처럼 보이게? 이미지 여러개 갈아끼우기
+        // Q. 배경 다가오는건?
+        // Q. 장애물이 나타나는 간격을 랜덤하게?
+        // Q. 점수표기는?
+        // Q. 시간 지날 때 점수도 오르는 기능은?
     </script>
 </body>
 </html>
