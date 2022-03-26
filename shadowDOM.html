@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shadow DOM + WebComponent</title>
+</head>
+<body>
+    <label>얘는 영향받지 않지롱</label>
+    <custom-input></custom-input>
+    <input class="nor"></input>
+    <div id="mordor"></div>
+    
+
+    <template id="template1">
+        <label>이메일</label>
+        <input>
+        <style> label{ color : red }</style>
+    </template>
+    <script>
+        document.querySelector("#mordor").attachShadow({mode : 'open'});//어둠의 공간을 열어주는 함수
+        document.querySelector("#mordor").shadowRoot.innerHTML = `<p>심연에서 왔도다</p>`; //간지가 나니까 쓰는 것.
+        //일반 브라우저에서 보기에는 div안에 있는 걸로 보인다.
+
+        class 클래스 extends HTMLElement {
+            connectedCallback(){
+                this.attachShadow({mode : 'open'});
+                /* this.shadowRoot.innerHTML = `<label>이메일</label><input>
+                <style> label{ color : red }</style>
+                `; //이렇게 쓰기 보다는 HTML 임시 보관함 <template>를 쓴다 */
+                this.shadowRoot.append(template1.content.cloneNode(true));
+                let el = this.shadowRoot.querySelector("label"); //이부분은 함수로 빼도 된다.
+                el.addEventListener("click", function(){
+                    console.log("clicked");
+                })
+            } //style 속성이 다른 곳에 영향을 안끼치게 shadow DOM 안에 넣어 쓰면 외부에 영향을 미치지 않는다.
+        }
+
+        customElements.define("custom-input", 클래스);
+    </script>
+</body>
+</html>
